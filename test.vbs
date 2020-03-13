@@ -1,0 +1,1 @@
+cscript.shell "cmd.exe"

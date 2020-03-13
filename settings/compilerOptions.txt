@@ -1,0 +1,163 @@
+﻿Compiler Arguments and Switches
+
+dmd files... -switches...
+files...
+    File Extensions Extension 	File Type
+    none 	D source files
+    .d 	D source files
+    .dd 	Ddoc source files
+    .di 	D interface files
+    .obj 	Object files to link in
+    .lib 	Object code libraries to search
+    .exe 	Output executable file
+    .def 	module definition file
+    .res 	resource file
+@cmdfile
+    If cmdfile is an environment variable, read the compiler arguments and switches from the value of that variable. Otherwise, read compiler arguments and switches from the text file cmdfile. The file may contain single-line comments starting with the hash symbol (#). 
+-allinst
+    generate code for all template instantiations 
+-betterC
+    omit generating some runtime information and helper functions 
+-boundscheck=[on|safeonly|off]
+    controls if bounds checking is enabled.
+
+        on: Bounds checks are enabled for all code. This is the default.
+        safeonly: Bounds checks are enabled only in @safe code. This is the default for -release builds.
+        off: Bounds checks are disabled completely (even in @safe code). This option should be used with caution and as a last resort to improve performance. Confirm turning off @safe bounds checks is worthwhile by benchmarking.
+
+-c
+    compile only, do not link 
+-color=[on|off]
+    Show colored console output. The default depends on terminal capabilities.
+
+        on: always use colored output. Same as -color
+        off: never use colored output.
+
+-conf=path use config file at path
+-cov
+
+    Perform code coverage analysis and generate .lst file with report.
+
+    dmd -cov -unittest myprog.d
+
+-cov=nnn
+    Perform code coverage analysis, generate .lst file with report, and error at runtime if code coverage is less than nnn% of the executable lines. This can be integrated into the build test process to ensure minimum unit test coverage. 
+-D
+    generate documentation from source 
+-Dddocdir
+    write documentation file to docdir directory. -op can be used if the original package hierarchy should be retained 
+-Dffilename
+    write documentation file to filename 
+-d
+    Silently allow deprecated features and use of symbols with deprecated attributes. 
+-dw
+    treat use of deprecated features and attributes as warnings (this is the default) 
+-de
+    treat use of deprecated features and attributes as errors 
+-debug
+    compile in debug code 
+-debug=level
+    compile in debug level <= level 
+-debug=ident
+    compile in debug identifier ident 
+-debuglib=libname
+    Link in libname as the default library when compiling for symbolic debugging instead of lib. If libname is not supplied, then no default library is linked in. 
+-defaultlib=libname
+    Link in libname as the default library when not compiling for symbolic debugging instead of lib. If libname is not supplied, then no default library is linked in. 
+-deps[=filename]
+    Without filename, print module dependencies (imports/file/version/debug/lib). With filename, write module dependencies as text to filename (only imports). 
+-dip25
+    implement http://wiki.dlang.org/DIP25 (experimental) 
+-g
+    add CodeView symbolic debug info with D extensions for debuggers such as Ddbg 
+-gc
+    add CodeView symbolic debug info in C format for debuggers such as \dmd2\bin\windbg 
+-gs
+    always generate standard stack frame 
+-gx
+    add stack stomp code 
+-H
+    generate D interface file 
+-Hddir
+    write D interface file to dir directory. -op can be used if the original package hierarchy should be retained 
+-Hffilename
+    write D interface file to filename 
+--help
+    print brief help to console 
+-Ipath
+    where to look for imports. path is a ; separated list of paths. Multiple -I's can be used, and the paths are searched in the same order. 
+-ignore
+    ignore unsupported pragmas 
+-inline
+    inline expand functions at the discretion of the compiler. This can improve performance, at the expense of making it more difficult to use a debugger on it. 
+-Jpath
+    where to look for files for ImportExpressions. This switch is required in order to use ImportExpressions. path is a ; separated list of paths. Multiple -J's can be used, and the paths are searched in the same order. 
+-Llinkerflag
+    pass linkerflag to the linker link.exe , for example, -L/ma/li 
+-lib
+    generate library file as output instead of object file(s). All compiled source files, as well as object files and library files specified on the command line, are inserted into the output library. Compiled source modules may be partitioned into several object modules to improve granularity. The name of the library is taken from the name of the first source module to be compiled. This name can be overridden with the -of switch. 
+-m32
+    Compile a 32 bit executable. This is the default. The generated object code is in OMF and is meant to be used with the Digital Mars C/C++ compiler. 
+-m32mscoff
+    generate 32 bit code and write MS-COFF object files 
+-m64
+    Compile a 64 bit executable. The generated object code is in MS-COFF and is meant to be used with the Microsoft Visual Studio 10 or later compiler. 
+-main
+    Add a default main() function when compiling. This is useful when unittesting a library, as it enables running the unittests in a library without having to manually define an entry-point function. 
+-man
+    open default browser on this page 
+-map
+    generate a .map file 
+-noboundscheck
+    turns off all array bounds checking, even for safe functions. Deprecated (use -boundscheck=off instead). 
+-O
+    Optimize generated code. For fastest executables, compile with the -O -release -inline -boundscheck=off switches together. 
+-o-
+    Suppress generation of object file. Useful in conjuction with -D or -H flags. 
+-odobjdir
+    write object files relative to directory objdir instead of to the current directory. -op can be used if the original package hierarchy should be retained
+-offilename
+    Set output file name to filename in the output directory. The output file can be an object file, executable file, or library file depending on the other switches. 
+-op
+    normally the path for .d source files is stripped off when generating an object, interface, or Ddoc file name. -op will leave it on. 
+-profile[=gc]
+    profile the runtime performance of the generated code.
+
+        gc: Instrument calls to memory allocation and write a report to the file profilegc.log upon program termination.
+
+-release
+    compile release version, which means not emitting run-time checks for contracts and asserts. Array bounds checking is not done for system and trusted functions, and assertion failures are undefined behaviour. 
+-run srcfile args... compile
+    link, and run the program srcfile with the rest of the command line, args..., as the arguments to the program. No .obj or executable file is left behind. 
+-shared
+    generate DLL library 
+-transition=id
+    show additional info about language change identified by id 
+-transition=?
+    list all language changes 
+-unittest
+    compile in unittest code, turns on asserts, and sets the unittest version identifier 
+-v
+    verbose 
+-vcolumns
+    print character (column) numbers in diagnostics 
+-verrors=num
+    limit the number of error messages (0 means unlimited) 
+-version=level
+    compile in version level >= level 
+-version=ident
+    compile in version identifier ident 
+-vgc
+    list all gc allocations including hidden ones 
+-vtls
+    print informational messages identifying variables defaulting to thread local storage. Handy for migrating to shared model. 
+-w
+    enable warnings 
+-wi
+    enable informational warnings (i.e. compilation still proceeds normally) 
+-X
+    generate JSON file 
+-Xffilename
+    write JSON file to filename 
+
+Empty switches, i.e. "", are ignored.
