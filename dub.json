@@ -1,0 +1,9 @@
+{
+	"authors": [
+		"andregoro"
+	],
+	"copyright": "Copyright © 2020, andregoro",
+	"description": "A minimal D application.",
+	"license": "proprietary",
+	"name": "mybot"
+}
